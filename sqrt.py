@@ -2,30 +2,40 @@
 import sys
 import os
 
-RED = '\x1b[91m'
-RED1 = '\033[31m'
-BLUE = '\033[94m'
-GREEN = '\033[32m'
-BOLD = '\033[1m'
-NORMAL = '\033[0m'
-TRANSPARENT = '\033[0m'
+Black = '\x1b[30m'
+Red = '\x1b[31m'
+Green = '\x1b[32m'
+Yellow = '\x1b[33m'
+Blue = '\x1b[34m'
+Magenta = '\x1b[35m'
+Cyan = '\x1b[36m'
+White = '\x1b[37m'
+Default = '\x1b[39m'
+LightGray = '\x1b[90m'
+LightRed = '\x1b[91m'
+LightGreen = '\x1b[92m'
+LightYellow = '\x1b[93m'
+LightBlue = '\x1b[94m'
+LightMagenta = '\x1b[95m'
+LightCyan = '\x1b[96m'
+LightWhite = '\x1b[97m'
 
 def clear():
 	return os.system('cls' if os.name == 'nt' else 'clear')
 
 def logo():
 	clear()
-	print (BLUE + "	 ___  _____   _____ _ __  " + TRANSPARENT)
-	print (BLUE + "	/ __|/ _ \ \ / / _ \ |_ \ " + TRANSPARENT)
-	print (BLUE + "	\__ \  __/\ V /  __/ | | |" + TRANSPARENT)
-	print (BLUE + "	|___/\___| \_/ \___|_| |_|" + TRANSPARENT)
-	print (BLUE + "							  " + TRANSPARENT)
+	print (Blue + "	 ___  _____   _____ _ __  " + Default)
+	print (Blue + "	/ __|/ _ \ \ / / _ \ |_ \ " + Default)
+	print (Blue + "	\__ \  __/\ V /  __/ | | |" + Default)
+	print (Blue + "	|___/\___| \_/ \___|_| |_|" + Default)
+	print (Blue + "							  " + Default)
 
 logo()
 
 if (sys.version_info[0] < 3):
-	print (RED+"Python Version 3 Needed!"+TRANSPARENT)
-	print (RED1+"python sqrt.py <nr>"+TRANSPARENT)
+	print (Red+"Python Version 3 Needed!"+Default)
+	print (Red+"python sqrt.py <nr>"+Default)
 	sys.exit(0)
 
 class sqrt:
@@ -35,30 +45,24 @@ class sqrt:
 		self.result = []
 
 	def createLeftNumber(self, left, clct):
-		lst = []
-		lst.append(left)
-		lst.append(clct)
-		tmp = ''.join(repr(int(n)) for n in lst)
-		return int(tmp)
+		left *= 10
+		left += clct
+		return left
 
 	def createRightNumber(self, right, pair):
-		lst = []
-		lst.append(right)
-		lst.append(pair[0])
-		lst.append(pair[1])
-		tmp = ''.join(repr(int(n)) for n in lst)
-		return int(tmp)
+		tmp = right * 10
+		tmp += pair[0]
+		tmp *= 10
+		tmp += pair[1]
+		#tmp = ''.join(repr(int(n)) for n in lst)
+		return tmp
 
 	def createDescendNumber(self, l, c):
 		return self.createLeftNumber(l, c) * c
 
 	def addTwoZero(self, nr):
-		lst = []
-		lst.append(nr)
-		lst.append(0)
-		lst.append(0)
-		tmp = ''.join(repr(int(n)) for n in lst)
-		return int(tmp)
+		tmp = nr * 100
+		return tmp
 
 	def closest(self, l, b):
 		n = 9
@@ -183,7 +187,7 @@ class sqrt:
 		print (''.join(map(str, l)))
 
 if len(sys.argv)  < 2:
-	print (RED1+"python sqrt.py <nr>"+TRANSPARENT)
+	print (Red+"python sqrt.py <nr>"+Default)
 else:
 	sqrtObj = sqrt(int(sys.argv[1]))
 	print (sqrtObj.sqrtdump())
