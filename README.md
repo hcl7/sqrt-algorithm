@@ -1,1 +1,1 @@
-sqrt algorithm for students is suposed to resolve by hand
+sqrt algorithm for students that is suposed to be resolved by hand.
